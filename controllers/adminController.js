@@ -132,7 +132,6 @@ OneModel.find({ nombre: "admin" }).exec(function (err, books) {
 
 //cambiamos la contraseña con la Query findOneAndUpdate.
 exports.ChangePassword = (req, res) => {
-    console.log("EMIPUTO");
     if (login) {
         OneModel.findOneAndUpdate(
             { nombre: "admin" },
@@ -193,23 +192,24 @@ exports.subirPost = (req, res) => {
 
 
 exports.edicion = (req, res) => {
-    // PostModel.findOneAndUpdate({ id: "admin" }, { $set: { usuario: req.body.usuario } }, { new: true }, function (err, doc) {
-    //     if (err) console.log("Error ", err);
-    //     console.log("Updated Doc -> ", doc);
-    //     res.status(200).render("login", { isLogin: isLogin, login: login });
-    // });    
-    res.status(200).render("editPosteo");
+    let id= req.params.id;
+    PostModel.findOneAndUpdate({ id: id },
+    { $set: { titulo: req.body.titulo,descripcion: req.body.descripcion,fecha: req.body.fecha,enlace: req.body.enlace,tags: req.body.tag} }, { new: true }, function (err, doc) {
+        if (err) console.log("Error ", err);
+                console.log("Updated Doc -> ", doc);
+                PostModel.find().sort({id: -1}).exec(function(err, post) {   
+                    console.log(post);
+                    res.status(200).render("edicionPosteos", {data:post});
+                });
+                
+            });
 };
 
 exports.visualizar = (req, res) => {
-    PostModel.find(function(err, data) {
-        if(err){
-            console.log(err);
-        }
-        else{
-            console.log(data);
-            res.status(200).render("visualizarPost", {data: data});
-        }
+    let id= req.params.id;
+    PostModel.find({ id:id }, (err, post) => {  
+        console.log(post);
+        res.status(200).render("visualizarPost", {data:post});
     }); 
 };
 
@@ -227,12 +227,13 @@ exports.eliminar = (req, res) => {
 };
 
 exports.eliminarPost = (req, res) => {
-    let id = req.params.id;
-    PostModel.find({id:id}).remove().exec();
-    PostModel.find().sort({id:-1}).exec(function(err,post){
-        res.status(200).render('edicionPosteos',{data:data});
+    let id= req.params.id;
+    PostModel.find({ id:id }).remove().exec();
+    PostModel.find().sort({id: -1}).exec(function(err, post) {   
+        console.log(post);
+        res.status(200).render("edicionPosteos", {data:post});
     });
-    res.redirect('/seccionAdmin');
+    res.redirect("/seccionAdmin");
 }
 
 exports.verPostsUsuario = (req, res) => {
