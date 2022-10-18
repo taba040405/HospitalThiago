@@ -14,11 +14,11 @@ body{
 
 
 html{
-    background-color:#ebe7e6;
+    background-color:#dfdad9;
 }
 
 .contenedor{
-    background-color:#ebe7e6;
+    background-color:#dfdad9;
 }
 
 .introduccion{
@@ -53,8 +53,9 @@ html{
       3px 3px 0px #2c0b88,
       6px 6px 0px #0d012e;
 }
-.introduccion h6{
-    font-weight: 400;
+.acomodar{
+    font-weight: 900;
+    font-size: 25px;
     font-family: 'Source Sans Pro', sans-serif;
     color: #000000;
     text-align: center;
@@ -266,6 +267,27 @@ html{
 @media only screen and (max-width: 320px){
     .introduccion{
         margin-top: 40%;
+    }
+
+    .introduccion h2 {
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: 600;
+        padding-top: 2.5%;
+        text-align: center;
+        width: 100%;
+        margin: 0px auto;
+        color: #ffffff;
+        font-size: 35px;
+        letter-spacing: 5px;
+        text-shadow: 3px 3px 0px #2c0b88, 6px 6px 0px #0d012e;
+    }
+
+    .acomodar {
+        font-weight: 900;
+        font-size: 15px;
+        font-family: 'Source Sans Pro', sans-serif;
+        color: #000000;
+        text-align: center;
     }
 }
 
