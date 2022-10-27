@@ -12,11 +12,11 @@ body {
     text-align: center;
 }
 html {
-    background-color: #dfdad9;
+    background-color: #e6e8ff;
 }
 
 .contenedor {
-    background-color: #dfdad9;
+    background-color: #e6e8ff;
 }
 
 .introduccion {
@@ -81,17 +81,23 @@ html {
     border-radius: 15px;
 }
 
+
+
 .postContent {
     display: flex;
     flex-direction: column;
     width: 60%;
     justify-content: center;
     align-items: flex-start;
+
 }
 
 .items:hover {
     box-shadow: 1px 1px 20px #313131;
     border-radius: 15px;
+
+    background: rgb(148,187,233);
+background: linear-gradient(0deg, rgba(148,187,233,0.6895133053221288) 54%, rgba(85,66,189,0.31416316526610644) 100%);
 }
 
 .items .imgPostCard {
@@ -108,10 +114,10 @@ html {
     color: #4f59dd;
     font-family: 'Nunito Sans', sans-serif;
     letter-spacing: 0.2px;
-    font-size: 18px;
+    font-weight: 600;
+    font-size: 5px;
     padding-left: 4%;
     padding-right: 4%;
-    padding-top: 2%;
 }
 
 .postContent .titlePostCard {
@@ -123,12 +129,23 @@ html {
     padding-right: 4%;
 }
 
+
 .postContent .datePostCard {
     color: #6e6e6e;
     font-weight: 400;
     font-size: 16px;
     padding-left: 4%;
     padding-right: 4%;
+}
+
+.postContent .textPostCard {
+    color: #0c003f;
+    font-weight: 400;
+    font-size: 16px;
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-top: 2%;
+    padding-bottom: 2%;
 }
 
 .postContent .descPostCard {
@@ -162,7 +179,7 @@ html {
     }
 
     .introduccion h6 {
-        font-size: 25px;
+        font-size: 10px;
     }
 
     .posts {
@@ -346,3 +363,4 @@ html {
 .back-to-top:hover {
     background: #263a77;
 }
+
