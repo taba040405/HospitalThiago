@@ -193,6 +193,9 @@ exports.subirPost = (req, res) => {
 
 exports.edicion = (req, res) => {
     let id= req.params.id;
+    PostModel.find({id:id},(err, post) =>{
+        res.status(200).render("editPosteo",{data:post});
+    });
     PostModel.findOneAndUpdate({ id: id },
     { $set: { titulo: req.body.titulo,descripcion: req.body.descripcion,fecha: req.body.fecha,enlace: req.body.enlace,tags: req.body.tag} }, { new: true }, function (err, doc) {
         if (err) console.log("Error ", err);

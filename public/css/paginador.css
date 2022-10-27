@@ -38,8 +38,8 @@ h1 {
 
 .pagination-number,
 .pagination-button{
+  background: #ffffff46;
   font-size: 1.1rem;
-  background-color: transparent;
   border: none;
   margin: 0.25rem 0.25rem;
   cursor: pointer;
@@ -50,12 +50,11 @@ h1 {
 
 .pagination-number:hover,
 .pagination-button:not(.disabled):hover {
-  background: #fff;
+  background: #003ab631;
 }
-
 .pagination-number.active {
   color: #fff;
-  background: #0085b6;
+  background: #003ab6;
 }
 
 footer {

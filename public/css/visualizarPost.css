@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    background-color:#edf7ff;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.contenedorNoticia{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+    align-items: center;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    background-color: #edf7ff;
+}
+.tituloNoticia{
+    width: 70%;
+    color:#0f0f0f;
+    font-size: 34px;
+    font-weight: 600;
+    text-transform: capitalize;
+    padding-bottom: 3%;
+}
+.imgNoticia{
+    width: 100%;
+}
+.imgNoticia img{
+    width: 100%;
+}
+.fechaNoticia{
+    font-size: 14px;
+    padding-right: 62%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    font-weight: 300;
+}
+.descripcionNoticia{
+    width: 70%;
+    font-size: 19px;
+    letter-spacing: 1px;
+    line-height: 30px;
+}
