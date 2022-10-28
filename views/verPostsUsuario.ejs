@@ -29,14 +29,17 @@
             <a href="/visualizar/<%=i.id%>" class="items">
               <div class="imgPostCard"></div>
               <div class="postContent">
-                <h5 class="tagPostCard">#<%=i.tags%>
-                </h5>
                 <h4 class="titlePostCard">
                   <%=i.titulo%>
                 </h4>
+                <div class="descPostCard">
+                  <%=i.descripcion.split(".")[0]%>.
+                </div>
                 <h6 class="datePostCard">
                   <%=i.fecha%>
                 </h6>
+                <h5 class="tagPostCard">#<%=i.tags%>
+                </h5>
               </div>
             </a>
             <%});%>
