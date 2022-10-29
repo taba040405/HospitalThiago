@@ -8,18 +8,18 @@
         <i class="toggleButton fas fa-bars"></i>
     </div>
 
-    <div class="mainBody active">
+    <div class="mainBody">
         <div class="secciones">
             <a href="/"><div class="inicio title">inicio</div></a>
             <a href="/verPostsUsuario"><div class="articulos title">artículos</div></a>
             <div class="divisiones title">
                 <span>Divisiones <i class="fa-solid fa-caret-down"></i></span>
                 <div class="menuDropdown">
-                    <ul>
-                        <li><a href="/kinesiologia*">Kinesiología</a></li>
-                        <li><a href="/saludmental">Salud mental</a></li>
-                        <li><a href="/neumonologia">Neumonología</a></li>
-                    </ul>
+                    <div class="ul">
+                        <div class="li kinesiologia"><a href="/kinesiologia*">Kinesiología</a></div>
+                        <div class="li saludMental"><a href="/saludmental">Salud mental</a></div>
+                        <div class="li neumonologia"><a href="/neumonologia">Neumonología</a></div>
+                    </div>
                 </div>
             </div>
             <a href="/seccionAdmin"><div class="administracion title">Administración</div></a>
@@ -46,16 +46,21 @@
     //Shrinking nav
     let navEl = document.querySelector("nav");
 
-    window.onscroll = function() {scrollFunction()};
-
-    function scrollFunction(){
-        if(document.documentElement.scrollTop < 50){
-            navEl.style.height = "120px";
+    $(document).ready(function(){
+        let shrink = 60;
+        $(window).scroll(function(){
+            let scroll = getCurrentScroll();
+            if(scroll >= shrink){
+                $(navEl).addClass('shrink');
+            }
+            else{
+                $(navEl).removeClass('shrink');
+            }
+        });
+        function getCurrentScroll(){
+            return window.pageYOffset || document.documentElement.scrollTop;
         }
-        else{
-            navEl.style.height = "70px";
-        }
-    }
+    });
 
     //toggle btn
     let toggleBtnEl = document.querySelector(".toggleButton");

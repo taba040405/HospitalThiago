@@ -12,6 +12,7 @@ nav{
     top: 0;
     left: 0;
     width: 100%;
+    height: 95px;
     flex-direction: row;
     background-color:#edf7ff;
     padding-left: 10%;
@@ -27,10 +28,18 @@ nav .logo{
     flex-direction: row;
     column-gap: 30px;
     align-items: center;
+    padding-left: 5%;
 }
 .logo img{
     width: 60px;
     height: 60px;
+}
+.nombrePagina .programa{
+    font-size: 20px;
+}
+
+.nombrePagina .hospital{
+    font-size: 16px;
 }
 .mainBody{
     width: 100%;
@@ -73,24 +82,27 @@ nav .logo{
     background-color:#edf7ff;
     border-radius: 5px;
 }
-.menuDropdown ul{
+.menuDropdown .ul{
     list-style: none;
-    margin-top: 40px;
+    margin-top: 5px;
     display: block;
 }
-.menuDropdown ul li{
+.menuDropdown .ul .li{
     width: 160px;
     padding: 15px;
 }
-.menuDropdown ul li:hover{
-    background-color: #cfd8df;
+.menuDropdown .ul .kinesiologia:hover{
+    background-color: #54e2417e;
+}
+.menuDropdown .ul .saludMental:hover{
+    background-color: #e241417e;
+}
+.menuDropdown .ul .neumonologia:hover{
+    background-color: #4167e27e;
 }
 .nombrePagina .programa{
     font-weight: 700;
     letter-spacing: 0.4px;
-}
-ul{
-    padding-left: 0px;
 }
 .ingresoAdmin button{
     width: 160px;

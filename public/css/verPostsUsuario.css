@@ -83,23 +83,17 @@ html {
     max-width: 60%;
 }
 
-
-
 .postContent {
     display: flex;
     flex-direction: column;
     width: 60%;
-    justify-content: center;
     align-items: flex-start;
-
 }
 
 .items:hover {
     box-shadow: 1px 1px 20px #313131;
     border-radius: 15px;
-
-    background: rgb(148,187,233);
-background: linear-gradient(0deg, rgba(148,187,233,0.6895133053221288) 54%, rgba(85,66,189,0.31416316526610644) 100%);
+    background: linear-gradient(0deg, #274f8a27 50%, rgba(84, 66, 189, 0.568) 100%);
 }
 
 .items .imgPostCard {
@@ -128,6 +122,7 @@ background: linear-gradient(0deg, rgba(148,187,233,0.6895133053221288) 54%, rgba
     letter-spacing: 1px;
     padding-left: 4%;
     padding-right: 4%;
+    padding-top: 5%;
 }
 
 
@@ -137,6 +132,9 @@ background: linear-gradient(0deg, rgba(148,187,233,0.6895133053221288) 54%, rgba
     font-size: 16px;
     padding-left: 4%;
     padding-right: 4%;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 }
 
 .postContent .textPostCard {

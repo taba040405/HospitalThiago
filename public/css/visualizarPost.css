@@ -54,8 +54,10 @@ body {
 .descripcionNoticia {
     width: 70%;
     font-size: 19px;
-    letter-spacing: 1px;
+    font-weight: 400;
+    letter-spacing: 0.2px;
     line-height: 30px;
+    word-spacing: 3.5px;
 }
 .iContainer{
     position: absolute;
