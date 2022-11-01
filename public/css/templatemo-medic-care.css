@@ -4,7 +4,7 @@ https://templatemo.com/tm-566-medic-care
 */
 
 /*---------------------------------------
-  CUSTOM PROPERTIES ( VARIABLES )            
+    CUSTOM PROPERTIES ( VARIABLES )            
 -----------------------------------------*/
 @import url('https://fonts.googleapis.com/css2? family= Roboto:ital,wght@1,700 & display=swap');
 
@@ -40,7 +40,7 @@ body {
 }
 
 /*---------------------------------------
-  TYPOGRAPHY              
+    TYPOGRAPHY              
 -----------------------------------------*/
 
 h2,
@@ -123,7 +123,7 @@ a:hover {
 }
 
 /*---------------------------------------
-  CUSTOM LINK              
+    CUSTOM LINK              
 -----------------------------------------*/
 .custom-link {
     display: inline-block;
@@ -166,14 +166,13 @@ a:hover {
 b,
 strong {
     font-weight: var(--font-weight-bold);
-    color: #ffffff;
 }
 .sombra {
     text-shadow: 1px 1px 1px black;
 }
 
 /*---------------------------------------
-  LIST GROUP              
+    LIST GROUP              
 -----------------------------------------*/
 .centrar-item {
     width: 200px;
@@ -196,7 +195,7 @@ strong {
 }
 
 /*---------------------------------------
-  ANIMATED TEXT              
+    ANIMATED TEXT              
 -----------------------------------------*/
 .animated {
     position: relative;
@@ -261,7 +260,7 @@ strong {
 }
 
 /*---------------------------------------
-  HERO              
+    HERO              
 -----------------------------------------*/
 .hero {
     padding-top: 0rem;
@@ -290,10 +289,21 @@ strong {
 /*---------------------------------------
   FEATURED              
 -----------------------------------------*/
+@media screen and (max-width:970px){
+    .circul{
+        border-radius: 100%;
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+        padding: 0 10px;
+        margin-bottom: 30px;
+    }
+}
+
 .featured-circle {
     border-radius: 100%;
-    width: 225px;
-    height: 225px;
+    width: 175px;
+    height: 175px;
     margin: 0 auto;
     padding: 0 20px;
     margin-bottom: 150px;
@@ -495,6 +505,10 @@ strong {
     position: relative;
     border-radius: 0 0 0.25rem 0.25rem;
     padding: 0;
+}
+
+.margenes{
+    margin-bottom: 50px;
 }
 
 .timeline-nodes:nth-child(odd) h3,
@@ -852,6 +866,9 @@ strong {
 }
 
 @media screen and (max-width: 991px) {
+    body {
+        padding-top: 74px;
+    }
 
     h1 {
         font-size: 38px;
@@ -988,17 +1005,47 @@ strong {
     width: 100px;
     margin-left: -70px;
 }
-.botoncerrarsesion {
-    position: absolute;
-    margin-top: 7px;
-    margin-left: 105px;
+
+.botonesAreas {
+    position: center;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    text-decoration:none;
+    color: #000;
+    font-size: var(--menu-font-size);
+    padding-top: 10px;
+    padding-bottom: 15px;
 }
-.botoninicio {
-    position: absolute;
-    margin-top: 7px;
-    margin-left: 12px;
+.botonKine:hover {
+    background-color: rgb(151, 224, 42);
 }
 
+.botonNeumo:hover {
+    background-color:  #3b5ac0ca;
+}
+
+.botonSaludMental:hover {
+    background-color: rgb(233, 0, 0);
+}
+
+.botoninicio {
+    
+    margin-top: 7px;
+    margin-left: 200px;
+    padding: 7px;
+    border: 2px solid rgb(76, 67, 240);
+    border-radius: 15%;
+}
+.botoninicio:hover{
+    background-color:rgb(76, 67, 240);
+}
+.botoninicio a{
+    text-decoration: none;
+    color: #000;
+}
+.botoninicio a:hover{
+    color: #000;
+}
 .botonposteo {
     position: absolute;
     margin-top: 7px;
@@ -1009,4 +1056,12 @@ strong {
     height: 4px;
     width: 5px;
     margin-left: 96px;
+}
+
+.img2::after{
+    content: "Ubicación";
+    font-size: 2rem;
+    color: #fff;
+    background-color: rgb(96, 95, 95);
+    position: absolute;
 }

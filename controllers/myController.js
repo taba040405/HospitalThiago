@@ -1,19 +1,10 @@
 const Admin = require("../models/myModel");
-const PostModel = require("../models/postModel");
 const moment = require("moment");
-global.isLogin = 0;
+let login;
 
 //Ejemplo de respuesta a una petición de tipo GET
 exports.inicio = (req, res) => {
-    PostModel.find(function (err, data) {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            console.log(data);
-            res.status(200).render("index", {data:data});
-        }
-    });
+res.status(200).render("index", { login:login, isLogin:isLogin});
 };
 
 const msg = new Admin({

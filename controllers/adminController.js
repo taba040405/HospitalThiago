@@ -3,7 +3,6 @@ const PostModel = require("../models/postModel");
 const moment = require("moment");
 const bcrypt = require("bcrypt");
 const { hash } = require("bcrypt");
-const imgbbUploader = require("imgbb-uploader");
 
 global.isLogin = 0;
 global.login = false;
@@ -32,6 +31,11 @@ exports.neumonologia = (req, res) => {
 //error404
 exports.error404 = (req, res) => {
     res.status(200).render("error404");
+};
+
+//vista contacto
+exports.contacto = (req, res) => {
+    res.status(200).render("contacto");
 };
 
 exports.logine = (req, res) => {
@@ -75,18 +79,13 @@ exports.logout = (req, res) => {
 };
 
 exports.postear = (req, res) => {
-    if(login) {
-        res.status(200).render("postPrueba", { isLogin: isLogin, login:login });
-        PostModel.findOne().sort({ id: -1 }).exec(function (err, post) {
-            console.log("Ultimo Id:" + post.id.toString());
-            idPosts = post.id;
-        });
+    if (login) {
+        res.status(200).render("postCreator");
+    } else {
+        isLogin = 4;
+        res.redirect("/"); //Hacer vista o algo con esto
     }
-    else {
-        res.status(200).render("index", { isLogin: 4, login: req.session.login, cerrar: 0 });
-    };
-}
-
+};
 exports.postear2 = (req, res) => {
     if (login) {
         res.status(200).render("postPrueba", {
@@ -101,15 +100,15 @@ exports.postear2 = (req, res) => {
 
 
 exports.seccionAdmin = (req, res) => {
-    PostModel.find(function (err, data) {
-        if (err) {
+    PostModel.find(function(err, data) {
+        if(err){
             console.log(err);
         }
-        else {
+        else{
             console.log(data);
-            res.status(200).render("edicionPosteos", { data: data });
+            res.status(200).render("edicionPosteos", {data: data});
         }
-    });
+    }); 
 };
 
 exports.config = (req, res) => {
@@ -168,122 +167,115 @@ exports.ChangeUser = (req, res) => {
     }
 };
 
-exports.uploadImage = (req, res) => {
-    if (!req.files) {
-        return res.status(400).send("No files were uploaded.");
-    }
-    const file = req.files.foto;
-    const path = "./public/files/" + file.name;
-    file.mv(path, (err) => {
-        if (err) {
-            return res.status(500).send(err);
-        }
-        imgbbUploader("04facdbd2e755d55e56fdc0f9e422f92", "./public/files/" + file.name).then((res) => console.log(res.url)).catch((error) => console.log(error));
-        return res.send({ status: "success", path: path })
-    })
-}
-
 exports.subirPost = (req, res) => {
-    let fecha = req.body.fecha;
-    let titulo = req.body.titulo;
-    let descripcion = req.body.descripcion;
-    let imagen;
-    let enlace = req.body.enlace;
-    let tag = req.body.tag;
-    let cloudinary_image = cloudinary.uploader.upload(req.file.path, { folder: "fotos", }).then(result => {
-        PostModel.findOne().sort({ id: -1 }).exec(function (err, post) {
-            ifdPosts = post.id;
-            let posteo = new PostModel({
-                id: idPosts + 1,
-                fecha: fecha,
-                titulo: titulo,
-                descripcion: descripcion,
-                imagen: result.url,
-                enlace: enlace,
-                tags: tag,
-            });
-            posteo.save((err, db) => {
-                if (err) {
-                    console.log(err);
-                    res.status(200).render("index", { isLogin: 8, login: req.session.login, cerrar: 0 });
-                }
-                else {
-                    res.status(200).render("index", { isLogin: 7, login: req.session.login, cerrar: 0 });
-                }
-            })
-        });
+    const pos = new PostModel({
+        id: id++,
+        fecha: new Date(req.body.fecha),
+        titulo: req.body.titulo,
+        descripcion: req.body.descripcion,
+        imagen: "./public/images/databaseimg/" + req.body.image,
+        enlace: req.body.enlace,
+        tags: req.body.tag,
     });
+
+    res.status(200).render("edicionPosteos", { data: PostModel.find()});
+    pos.save().then((doc) => {
+        console.log(doc);
+        console.log("cargado");
+    }).catch((err) => {
+        console.error(err);
+    });
+    res.status(200).render("edicionPosteos", { data: PostModel.find()});
 };
 
 
-exports.edicion = (req, res) => {
-    let id = req.params.id;
-    PostModel.find({ id: id }, (err, post) => {
-        res.status(200).render("editPosteo", { data: post });
-    });
-    PostModel.findOneAndUpdate({ id: id },
-        { $set: { titulo: req.body.titulo, descripcion: req.body.descripcion, fecha: req.body.fecha, enlace: req.body.enlace, tags: req.body.tag } }, { new: true }, function (err, doc) {
-            if (err) console.log("Error ", err);
-            console.log("Updated Doc -> ", doc);
-            PostModel.find().sort({ id: -1 }).exec(function (err, post) {
-                console.log(post);
-                res.status(200).render("edicionPosteos", { data: post });
-            });
+exports.edicionPostGet = (req, res) => {
+    let id= req.params.id;
+    PostModel.find({ id:id }, (err, post) => {  
+        console.log(post);
+        res.status(200).render("editPosteo", {data:post});
+    }); 
+};
 
-        });
+exports.edicionPostPOST = (req, res) =>{
+    let id= req.params.id;
+    PostModel.findOneAndUpdate({ id: id },
+    { $set: { titulo: req.body.titulo,descripcion: req.body.descripcion,fecha: req.body.fecha,enlace: req.body.enlace,tags: req.body.tag} }, { new: true }, function (err, doc) {
+        if (err) console.log("Error ", err);
+                console.log("Updated Doc -> ", doc);
+                PostModel.find().sort({id: -1}).exec(function(err, post) {   
+                    console.log(post);
+                    res.status(200).render("edicionPosteos", {data:post});
+                });
+                
+            });
+};
+
+exports.edicion = (req, res) => {
+    let id= req.params.id;
+    PostModel.findOneAndUpdate({ id: id },
+    { $set: { titulo: req.body.titulo,descripcion: req.body.descripcion,fecha: req.body.fecha,enlace: req.body.enlace,tags: req.body.tag} }, { new: true }, function (err, doc) {
+        if (err) console.log("Error ", err);
+                console.log("Updated Doc -> ", doc);
+                PostModel.find().sort({id: -1}).exec(function(err, post) {   
+                    console.log(post);
+                    res.status(200).render("editPosteo", {data:post});
+                });
+
+            });
 };
 
 exports.visualizar = (req, res) => {
-    let id = req.params.id;
-    PostModel.find({ id: id }, (err, post) => {
+    let id= req.params.id;
+    PostModel.find({ id:id }, (err, post) => {  
         console.log(post);
-        res.status(200).render("visualizarPost", { data: post });
-    });
+        res.status(200).render("visualizarPost", {data:post});
+    }); 
 };
 
 exports.eliminar = (req, res) => {
     // let titulo = document.getElementById("titulo");
     // console.log(titulo.innerHTML); 
-    User.findOneAndDelete({ id: req.params['id'] }, function (err, docs) {
-        if (err) {
+    User.findOneAndDelete({id: req.params['id']}, function (err, docs) {
+        if (err){
             console.log(err)
         }
-        else {
+        else{
             console.log("Deleted User : ", docs);
         }
     });
 };
 
 exports.eliminarPost = (req, res) => {
-    let id = req.params.id;
-    PostModel.find({ id: id }).remove().exec();
-    PostModel.find().sort({ id: -1 }).exec(function (err, post) {
+    let id= req.params.id;
+    PostModel.find({ id:id }).remove().exec();
+    PostModel.find().sort({id: -1}).exec(function(err, post) {   
         console.log(post);
-        res.status(200).render("edicionPosteos", { data: post });
+        res.status(200).render("edicionPosteos", {data:post});
     });
     res.redirect("/seccionAdmin");
 }
 
 exports.verPostsUsuario = (req, res) => {
-    PostModel.find(function (err, data) {
-        if (err) {
+    PostModel.find(function(err, data) {
+        if(err){
             console.log(err);
         }
-        else {
+        else{
             console.log(data);
-            res.status(200).render("verPostsUsuario", {data:data});
+            res.status(200).render("verPostsUsuario", {data: data});
         }
-    });
+    }); 
 };
 
 exports.contactanos = (req, res) => {
-    PostModel.find(function (err, data) {
-        if (err) {
+    PostModel.find(function(err, data) {
+        if(err){
             console.log(err);
         }
-        else {
+        else{
             console.log(data);
-            res.status(200).render("vistaContacto", { data: data });
+            res.status(200).render("vistaContacto", {data: data});
         }
-    });
-}
+    }); 
+};

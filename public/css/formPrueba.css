@@ -6,7 +6,6 @@ label{
   color: rgb(83, 83, 83);
 }
 
-
 #signUpForm {
   max-width: 800px;
   background-color: #ffffff;
@@ -86,26 +85,34 @@ label{
 #signUpForm input.invalid {
   border: 1px solid #ffaba5;
 }
-#signUpForm textarea {
+#signUpForm .textarea {
+  color: rgb(31, 31, 31) !important;
+  font-weight: 500;
   padding: 15px 20px;
   width: 100%;
-  font-size: 1em;
+  height: 250px;
+  font-size: 16px;
   border: 1px solid #d3c9c9;
   border-radius: 5px;
   resize: none;
+  overflow:scroll;
 }
-#signUpForm textarea::-webkit-scrollbar{
+#signUpForm .textarea:empty:before{
+  content: attr(data-placeholder);
+  color:#5f5f5f;
+}
+#signUpForm .textarea::-webkit-scrollbar{
   width: 5px;
 }
-#signUpForm textarea::-webkit-scrollbar-thumb{
+#signUpForm .textarea::-webkit-scrollbar-thumb{
   border-radius: 5px;
   background-color: rgb(94, 104, 245);
 }
-#signUpForm textarea:focus {
+#signUpForm .textarea:focus {
   border: 1px solid #97a1fe;
   outline: 0;
 }
-#signUpForm textarea.invalid {
+#signUpForm .textarea.invalid {
   border: 1px solid #ffaba5;
 }
 #signUpForm .step {
@@ -144,5 +151,7 @@ opacity: 0.8;
 #signUpForm .form-footer #prevBtn {
   background-color: #fff;
   color: #307dd4 !important;
-
+}
+.activo{
+  background-color:#479dff4f;
 }

@@ -25,7 +25,7 @@
 <body>
     <%-include('fragments/admin', {login:login})%>
 
-        <form id="signUpForm" action="/subirpost" enctype="multipart/form-data" method="post"
+        <form id="signUpForm" action="/postear" enctype="multipart/form-data" method="post"
             data-mdb-toggle="animation">
             <h3 class="text-center fs-3">Crear post</h3>
             <div class="form-header d-flex mb-4">
@@ -40,7 +40,7 @@
                         <label for="titulo">Titulo</label>
                     </div>
                     <div class="col-75">
-                        <input type="text" name="titulo" id="titulo" placeholder="Agrega un titulo.." required />
+                        <input type="text" name="titulo" id="titulo" placeholder="Agregue un titulo.." required />
                     </div>
                 </div>
                 <div class="row needs-validation" novalidate>
@@ -48,23 +48,41 @@
                         <ion-icon name="reader-outline"></ion-icon>
                         <label for="descripcion">Descripcion</label>
                     </div>
-                    <!-- <div class="opcionesEdicion">
-                        <button class="btn btnOpcion" data-element="bold">
+                    <div class="opcionesEdicion">
+                        <button id="bold" class="btn btnOpcion format">
                             <i class="fa fa-bold"></i>
                         </button>
-                        <button class="btn btnOpcion" data-element="italic">
+                        <button id="italic" class="btn btnOpcion format">
                             <i class="fa fa-italic"></i>
                         </button>
-                        <button class="btn btnOpcion" data-element="underline">
+                        <button id="underline" class="btn btnOpcion format">
                             <i class="fa fa-underline"></i>
                         </button>
-                        <button class="btn btnOpcion" data-element="createLink">
+                        <button id="strikethrough" class="btn btnOpcion format">
+                            <i class="fa-solid fa-strikethrough"></i>
+                        </button>
+
+                        <button id="insertUnorderedList" class="btn btnOpcion">
+                            <i class="fa-solid fa-list"></i>
+                        </button>
+                        <button id="insertOrderedList" class="btn btnOpcion">
+                            <i class="fa-solid fa-list-ol"></i>
+                        </button>
+
+                        <button id="createLink" class="btn advBtnOpcion">
                             <i class="fa fa-link"></i>
                         </button>
-                    </div> -->
+                        <button id="unlink" class="btn btnOpcion">
+                            <i class="fa-solid fa-link-slash"></i>
+                        </button>
+
+                        <!-- <button id="highlight" class="btn advBtnOpcion">
+                            <i class="fa-solid fa-highlighter"></i>
+                        </button> -->
+                    </div>
                     <div class="col-75">
-                        <textarea id="subject" name="descripcion" placeholder="Agrega una descripcion.."
-                            style="height: 100px" required></textarea>
+                        <div id="subject text-input" class="textarea" contenteditable="true" data-placeholder="Agregue un texto..."></div>
+                        <!-- <textarea name="descripcion" id="descripcion text-input" class="textarea" style="height: 100px" placeholder="Agregue un texto..." required></textarea> -->
                     </div>
                 </div>
 
@@ -130,6 +148,8 @@
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        
 
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.bundle.min.js"></script>
